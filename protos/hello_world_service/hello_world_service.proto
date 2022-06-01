@@ -1,48 +1,48 @@
 syntax = "proto3";
 
-package my_proto.hello_world_service;
+package my_interface.hello_world_service;
 option go_package = "github.com/solost23/my_interface/gen_go/hello_world_service";
 
 service HelloWorldService {
   // createHelloWorld 增加helloWorld
-  rpc createHelloWorld(createHelloWorldRequest) returns (createHelloWorldResponse) {}
+  rpc CreateHelloWorld(CreateHelloWorldRequest) returns (CreateHelloWorldResponse) {}
   // deleteHelloWorld 删除helloWorld
-  rpc deleteHelloWorld(deleteHelloWorldRequest) returns (deleteHelloWorldResponse) {}
+  rpc DeleteHelloWorld(DeleteHelloWorldRequest) returns (DeleteHelloWorldResponse) {}
   // updateHelloWorld 更新helloWorld
-  rpc updateHelloWorld(updateHelloWorldRequest) returns (updateHelloWorldResponse) {}
+  rpc UpdateHelloWorld(UpdateHelloWorldRequest) returns (UpdateHelloWorldResponse) {}
   // listHelloWorld 查找helloWorld
-  rpc listHelloWorld(listHelloWorldRequest) returns (listHelloWorldResponse) {}
+  rpc ListHelloWorld(ListHelloWorldRequest) returns (ListHelloWorldResponse) {}
 }
 
-message createHelloWorldRequest {
+message CreateHelloWorldRequest {
   string helloWorld = 1;
 }
 
-message createHelloWorldResponse {
+message CreateHelloWorldResponse {
   string helloWorld = 1;
 }
 
-message deleteHelloWorldRequest {
+message DeleteHelloWorldRequest {
   string helloWorld = 1;
 }
 
-message deleteHelloWorldResponse {
+message DeleteHelloWorldResponse {
   string helloWorld = 1;
 }
 
-message updateHelloWorldRequest {
+message UpdateHelloWorldRequest {
   string helloWorld = 1;
 }
 
-message updateHelloWorldResponse {
+message UpdateHelloWorldResponse {
   string helloWorld = 1;
 }
 
-message listHelloWorldRequest {
+message ListHelloWorldRequest {
   string helloWorld = 1;
 }
 
-message listHelloWorldResponse {
+message ListHelloWorldResponse {
   string helloWorld = 1;
 }
 
