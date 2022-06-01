@@ -3,6 +3,8 @@ syntax = "proto3";
 package my_interface.hello_world_service;
 option go_package = "github.com/solost23/my_interface/gen_go/hello_world_service";
 
+import "protos/common/common.proto";
+
 service HelloWorldService {
   // createHelloWorld 增加helloWorld
   rpc CreateHelloWorld(CreateHelloWorldRequest) returns (CreateHelloWorldResponse) {}
@@ -15,34 +17,42 @@ service HelloWorldService {
 }
 
 message CreateHelloWorldRequest {
-  string helloWorld = 1;
+  common.requestHeader header = 1;
+  string helloWorld = 2;
 }
 
 message CreateHelloWorldResponse {
-  string helloWorld = 1;
+  common.errorInfo error_info = 1;
+  string helloWorld = 2;
 }
 
 message DeleteHelloWorldRequest {
-  string helloWorld = 1;
+  common.requestHeader header = 1;
+  string helloWorld = 2;
 }
 
 message DeleteHelloWorldResponse {
-  string helloWorld = 1;
+  common.errorInfo error_info = 1;
+  string helloWorld = 2;
 }
 
 message UpdateHelloWorldRequest {
-  string helloWorld = 1;
+  common.requestHeader header = 1;
+  string helloWorld = 2;
 }
 
 message UpdateHelloWorldResponse {
-  string helloWorld = 1;
+  common.errorInfo error_info = 1;
+  string helloWorld = 2;
 }
 
 message ListHelloWorldRequest {
-  string helloWorld = 1;
+  common.requestHeader header = 1;
+  string helloWorld = 2;
 }
 
 message ListHelloWorldResponse {
-  string helloWorld = 1;
+  common.errorInfo error_info = 1;
+  string helloWorld = 2;
 }
 
