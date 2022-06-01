@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package my_proto.hello_world_service;
-option go_package = "github.com/my_interface/gen_go/hello_world_service";
+option go_package = "github.com/solost23/my_interface/gen_go/hello_world_service";
 
 service HelloWorldService {
   // createHelloWorld 增加helloWorld
