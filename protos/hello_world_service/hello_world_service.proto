@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package my_proto.hello_world_service;
+option go_package = "github.com/my_interface/gen_go/hello_world_service";
+
+service HelloWorldService {
+  // createHelloWorld 增加helloWorld
+  rpc createHelloWorld(createHelloWorldRequest) returns (createHelloWorldResponse) {}
+  // deleteHelloWorld 删除helloWorld
+  rpc deleteHelloWorld(deleteHelloWorldRequest) returns (deleteHelloWorldResponse) {}
+  // updateHelloWorld 更新helloWorld
+  rpc updateHelloWorld(updateHelloWorldRequest) returns (updateHelloWorldResponse) {}
+  // listHelloWorld 查找helloWorld
+  rpc listHelloWorld(listHelloWorldRequest) returns (listHelloWorldResponse) {}
+}
+
+message createHelloWorldRequest {
+  string helloWorld = 1;
+}
+
+message createHelloWorldResponse {
+  string helloWorld = 1;
+}
+
+message deleteHelloWorldRequest {
+  string helloWorld = 1;
+}
+
+message deleteHelloWorldResponse {
+  string helloWorld = 1;
+}
+
+message updateHelloWorldRequest {
+  string helloWorld = 1;
+}
+
+message updateHelloWorldResponse {
+  string helloWorld = 1;
+}
+
+message listHelloWorldRequest {
+  string helloWorld = 1;
+}
+
+message listHelloWorldResponse {
+  string helloWorld = 1;
+}
+
