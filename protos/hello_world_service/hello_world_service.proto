@@ -1,58 +1,70 @@
 syntax = "proto3";
 
-package my_interface.hello_world_service;
-option go_package = "github.com/solost23/my_interface/gen_go/hello_world_service";
+package go_interface.user_service;
+option go_package = "github.com/solost23/go_interface/gen_go/user_service";
 
 import "protos/common/common.proto";
 
-service HelloWorldService {
-  // createHelloWorld 增加helloWorld
-  rpc CreateHelloWorld(CreateHelloWorldRequest) returns (CreateHelloWorldResponse) {}
-  // deleteHelloWorld 删除helloWorld
-  rpc DeleteHelloWorld(DeleteHelloWorldRequest) returns (DeleteHelloWorldResponse) {}
-  // updateHelloWorld 更新helloWorld
-  rpc UpdateHelloWorld(UpdateHelloWorldRequest) returns (UpdateHelloWorldResponse) {}
-  // listHelloWorld 查找helloWorld
-  rpc ListHelloWorld(ListHelloWorldRequest) returns (ListHelloWorldResponse) {}
+service UserService {
+  // createUser 增加User
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+  // deleteUser 删除User
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
+  // updateUser 更新User
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+  // listUser 查找User
+  rpc ListHelloWorld(ListUserRequest) returns (ListUserResponse) {}
 }
 
-message CreateHelloWorldRequest {
+message User {
+  string ID = 1;
+  string UserName = 2;
+  string Password = 3;
+  string Nickname = 4;
+  string Role = 5;
+  string Introduce = 6;
+  string Avatar = 7;
+  int64 CreateTime = 8;
+  int64 UpdateTime = 9;
+}
+
+message CreateUserRequest {
   common.requestHeader header = 1;
-  string helloWorld = 2;
+  User user = 2;
 }
 
-message CreateHelloWorldResponse {
+message CreateUserResponse {
   common.errorInfo error_info = 1;
-  string helloWorld = 2;
+  User user = 2;
 }
 
-message DeleteHelloWorldRequest {
+message DeleteUserRequest {
   common.requestHeader header = 1;
-  string helloWorld = 2;
+  User user = 2;
 }
 
-message DeleteHelloWorldResponse {
+message DeleteUserResponse {
   common.errorInfo error_info = 1;
-  string helloWorld = 2;
+  User user = 2;
 }
 
-message UpdateHelloWorldRequest {
+message UpdateUserRequest {
   common.requestHeader header = 1;
-  string helloWorld = 2;
+  User user = 2;
 }
 
-message UpdateHelloWorldResponse {
+message UpdateUserResponse {
   common.errorInfo error_info = 1;
-  string helloWorld = 2;
+  User user = 2;
 }
 
-message ListHelloWorldRequest {
+message ListUserRequest {
   common.requestHeader header = 1;
-  string helloWorld = 2;
+  User user = 2;
 }
 
-message ListHelloWorldResponse {
+message ListUserResponse {
   common.errorInfo error_info = 1;
-  string helloWorld = 2;
+  User user = 2;
 }
 
