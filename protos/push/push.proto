@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package go_interface.push;
+option go_package = "github.com/solost23/go_interface/gen_go/push";
+
+import "protos/common/common.proto";
+
+service Push {
+  // 向用户发送邮件消息
+  rpc SendEmail(SendEmailRequest) returns(SendEmailResponse);
+}
+
+message Email {
+  // 发送人主机
+  string host = 1;
+  // 发送人主机端口
+  string port = 2;
+  // 发送人密码
+  string password = 3;
+  // 发送人名字
+  string sendPersonName = 4;
+  // 发送人邮箱地址
+  string sendPersonAddr = 5;
+
+  string topic = 6;
+  string name = 7;
+  string addr = 8;
+  string contentType = 9;
+  string content = 10;
+}
+
+message SendEmailRequest {
+  common.requestHeader header = 1;
+  Email email = 2;
+}
+
+message SendEmailResponse {
+  common.errorInfo error_info = 1;
+}
