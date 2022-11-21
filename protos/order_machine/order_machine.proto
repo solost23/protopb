@@ -15,15 +15,15 @@ service OrderMachine {
 }
 
 enum OrderSource {
-  app = 0;
-  web = 1;
-  smallProgram = 2;
+  App = 0;
+  Web = 1;
+  SmallProgram = 2;
 }
 
 enum OrderPayWay {
-  aliPay = 0;
-  weChat = 1;
-  onlineBank = 2;
+  AliPay = 0;
+  WeChat = 1;
+  OnlineBank = 2;
 }
 
 message CreateOrderRequest {
@@ -52,50 +52,50 @@ message ListOrderResponse {
 
 enum OrderEvent {
   // 创建订单
-  eventCreate = 0;
+  EventCreate = 0;
   // 确定订单
-  eventConfirm = 1;
+  EventConfirm = 1;
   // 修改订单
-  eventModify = 2;
+  EventModify = 2;
   // 支付订单
-  eventPay = 3;
+  EventPay = 3;
   // 发送订单
-  eventSend = 4;
+  EventSend = 4;
   // 用户收货
-  eventAccept = 5;
+  EventAccept = 5;
   // 用户评价
-  eventEvaluation = 6;
+  EventEvaluation = 6;
   // 用户申请退款
-  eventRefundAccept = 7;
+  EventRefundAccept = 7;
   // 用户取消退款
-  eventRefundCancel = 8;
+  EventRefundCancel = 8;
   // 后台同意退款
-  eventRefundConfirm = 9;
+  EventRefundConfirm = 9;
   // 后台拒绝退款
-  eventRefundReject = 10;
+  EventRefundReject = 10;
 }
 
 enum OrderStatus {
   // 默认
   StatusDefault = 0;
   // 已预定
-  statusReserved = 10;
+  StatusReserved = 10;
   // 待支付
-  statusWaitPayment = 20;
+  StatusWaitPayment = 20;
   // 已支付，待发货
-  statusAlreadyPaymentWaitSendGoods = 30;
+  StatusAlreadyPaymentWaitSendGoods = 30;
   // 待收货
-  statusWaitAcceptGoods = 40;
+  StatusWaitAcceptGoods = 40;
   // 待评价
-  statusWaitEvaluation = 50;
+  StatusWaitEvaluation = 50;
   // 已评价，订单完成
-  statusAlreadyEvaluationOrderOver = 60;
+  StatusAlreadyEvaluationOrderOver = 60;
   // 待退款，审核中
-  statusWaitRefundChecking = 70;
+  StatusWaitRefundChecking = 70;
   // 退款成功
-  statusRefundSuccess = 80;
+  StatusRefundSuccess = 80;
   // 退款失败
-  statusRefundFailed = 90;
+  StatusRefundFailed = 90;
 }
 
 message SwitchOrderStateRequest {
