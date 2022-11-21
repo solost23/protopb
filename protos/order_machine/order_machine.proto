@@ -51,7 +51,7 @@ message DetailOrder {
 
 message ListOrderResponse {
   common.errorInfo error_info = 1;
-  DetailOrder records = 2;
+  repeated DetailOrder records = 2;
 }
 
 enum OrderEvent {
