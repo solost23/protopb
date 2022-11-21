@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package go_interface.order_machine;
+option go_package = "github.com/solost23/go_interface/gen_go/order_machine";
+
+import "protos/common/common.proto";
+
+service OrderMachine {
+  // 创建订单
+  rpc CreateOrder(CreateOrderRequest) returns(CreateOrderResponse);
+  // 订单列表
+  rpc ListOrder(ListOrderRequest) returns(ListOrderResponse);
+  // 订单状态流转
+  rpc SwitchOrderState(SwitchOrderStateRequest) returns(SwitchOrderStateResponse);
+}
+
+enum OrderSource {
+  app = 0;
+  web = 1;
+  smallProgram = 2;
+}
+
+enum OrderPayWay {
+  aliPay = 0;
+  weChat = 1;
+  onlineBank = 2;
+}
+
+message CreateOrderRequest {
+  common.requestHeader header = 1;
+  repeated uint32 courseIds = 2;
+  repeated uint32 courseNums = 3;
+  OrderSource orderSource = 4;
+  OrderPayWay orderPayWay = 5;
+}
+
+message CreateOrderResponse {
+  common.errorInfo error_info = 1;
+  uint32 orderId = 2;
+}
+
+message ListOrderRequest {
+  common.requestHeader header = 1;
+}
+
+message ListOrderResponse {
+  common.errorInfo error_info = 1;
+  uint32 orderId = 2;
+  uint32 orderStatus = 3;
+  repeated string orderEvents = 4;
+}
+
+enum OrderEvent {
+  // 创建订单
+  eventCreate = 0;
+  // 确定订单
+  eventConfirm = 1;
+  // 修改订单
+  eventModify = 2;
+  // 支付订单
+  eventPay = 3;
+  // 发送订单
+  eventSend = 4;
+  // 用户收货
+  eventAccept = 5;
+  // 用户评价
+  eventEvaluation = 6;
+  // 用户申请退款
+  eventRefundAccept = 7;
+  // 用户取消退款
+  eventRefundCancel = 8;
+  // 后台同意退款
+  eventRefundConfirm = 9;
+  // 后台拒绝退款
+  eventRefundReject = 10;
+}
+
+enum OrderStatus {
+  // 默认
+  StatusDefault = 0;
+  // 已预定
+  statusReserved = 10;
+  // 待支付
+  statusWaitPayment = 20;
+  // 已支付，待发货
+  statusAlreadyPaymentWaitSendGoods = 30;
+  // 待收货
+  statusWaitAcceptGoods = 40;
+  // 待评价
+  statusWaitEvaluation = 50;
+  // 已评价，订单完成
+  statusAlreadyEvaluationOrderOver = 60;
+  // 待退款，审核中
+  statusWaitRefundChecking = 70;
+  // 退款成功
+  statusRefundSuccess = 80;
+  // 退款失败
+  statusRefundFailed = 90;
+}
+
+message SwitchOrderStateRequest {
+  common.requestHeader header = 1;
+  uint32 orderId = 2;
+  OrderEvent orderEvent = 3;
+  string refundAcceptIntroduce = 4;
+  string evaluation = 5;
+}
+
+message SwitchOrderStateResponse {
+  common.errorInfo error_info = 1;
+  uint32 orderId = 2;
+  OrderStatus orderStatus = 3;
+}
