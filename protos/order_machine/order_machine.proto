@@ -43,11 +43,15 @@ message ListOrderRequest {
   common.requestHeader header = 1;
 }
 
+message DetailOrder {
+  uint32 orderId = 1;
+  uint32 orderStatus = 2;
+  repeated OrderEvent orderEvents = 3;
+}
+
 message ListOrderResponse {
   common.errorInfo error_info = 1;
-  uint32 orderId = 2;
-  uint32 orderStatus = 3;
-  repeated string orderEvents = 4;
+  DetailOrder records = 2;
 }
 
 enum OrderEvent {
