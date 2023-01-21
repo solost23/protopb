@@ -1,4 +1,4 @@
-module protopb
+module github.com/solost23/protopb
 
 go 1.19
 
