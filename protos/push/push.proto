@@ -8,6 +8,10 @@ import "protos/common/common.proto";
 service Push {
   // 向用户发送邮件消息
   rpc SendEmail(SendEmailRequest) returns(SendEmailResponse);
+  // 发送飞书消息(text)
+  rpc SendLarkText(SendLarkTextRequest) returns(SendLarkTextResponse);
+  // 发送飞书消息(富文本)
+  rpc SendLarkPlatformGroup(SendLarkPlatformGroupRequest) returns(SendLarkPlatformGroupResponse);
 }
 
 message Email {
@@ -35,5 +39,24 @@ message SendEmailRequest {
 }
 
 message SendEmailResponse {
-  common.errorInfo error_info = 1;
+  common.errorInfo errorInfo = 1;
+}
+
+message SendLarkTextRequest {
+  common.requestHeader header = 1;
+  repeated string openIds = 2;
+  string msg = 3;
+}
+
+message SendLarkTextResponse {
+  common.errorInfo errorInfo = 1;
+}
+
+message SendLarkPlatformGroupRequest {
+  common.requestHeader header = 1;
+  string msg = 2;
+}
+
+message SendLarkPlatformGroupResponse {
+  common.errorInfo errorInfo = 1;
 }

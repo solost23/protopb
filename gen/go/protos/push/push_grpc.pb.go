@@ -24,6 +24,10 @@ const _ = grpc.SupportPackageIsVersion7
 type PushClient interface {
 	// 向用户发送邮件消息
 	SendEmail(ctx context.Context, in *SendEmailRequest, opts ...grpc.CallOption) (*SendEmailResponse, error)
+	// 发送飞书消息(text)
+	SendLarkText(ctx context.Context, in *SendLarkTextRequest, opts ...grpc.CallOption) (*SendLarkTextResponse, error)
+	// 发送飞书消息(富文本)
+	SendLarkPlatformGroup(ctx context.Context, in *SendLarkPlatformGroupRequest, opts ...grpc.CallOption) (*SendLarkPlatformGroupResponse, error)
 }
 
 type pushClient struct {
@@ -43,12 +47,34 @@ func (c *pushClient) SendEmail(ctx context.Context, in *SendEmailRequest, opts .
 	return out, nil
 }
 
+func (c *pushClient) SendLarkText(ctx context.Context, in *SendLarkTextRequest, opts ...grpc.CallOption) (*SendLarkTextResponse, error) {
+	out := new(SendLarkTextResponse)
+	err := c.cc.Invoke(ctx, "/go_interface.push.Push/SendLarkText", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pushClient) SendLarkPlatformGroup(ctx context.Context, in *SendLarkPlatformGroupRequest, opts ...grpc.CallOption) (*SendLarkPlatformGroupResponse, error) {
+	out := new(SendLarkPlatformGroupResponse)
+	err := c.cc.Invoke(ctx, "/go_interface.push.Push/SendLarkPlatformGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PushServer is the server API for Push service.
 // All implementations must embed UnimplementedPushServer
 // for forward compatibility
 type PushServer interface {
 	// 向用户发送邮件消息
 	SendEmail(context.Context, *SendEmailRequest) (*SendEmailResponse, error)
+	// 发送飞书消息(text)
+	SendLarkText(context.Context, *SendLarkTextRequest) (*SendLarkTextResponse, error)
+	// 发送飞书消息(富文本)
+	SendLarkPlatformGroup(context.Context, *SendLarkPlatformGroupRequest) (*SendLarkPlatformGroupResponse, error)
 	mustEmbedUnimplementedPushServer()
 }
 
@@ -58,6 +84,12 @@ type UnimplementedPushServer struct {
 
 func (UnimplementedPushServer) SendEmail(context.Context, *SendEmailRequest) (*SendEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendEmail not implemented")
+}
+func (UnimplementedPushServer) SendLarkText(context.Context, *SendLarkTextRequest) (*SendLarkTextResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendLarkText not implemented")
+}
+func (UnimplementedPushServer) SendLarkPlatformGroup(context.Context, *SendLarkPlatformGroupRequest) (*SendLarkPlatformGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendLarkPlatformGroup not implemented")
 }
 func (UnimplementedPushServer) mustEmbedUnimplementedPushServer() {}
 
@@ -90,6 +122,42 @@ func _Push_SendEmail_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Push_SendLarkText_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendLarkTextRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PushServer).SendLarkText(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/go_interface.push.Push/SendLarkText",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PushServer).SendLarkText(ctx, req.(*SendLarkTextRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Push_SendLarkPlatformGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendLarkPlatformGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PushServer).SendLarkPlatformGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/go_interface.push.Push/SendLarkPlatformGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PushServer).SendLarkPlatformGroup(ctx, req.(*SendLarkPlatformGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Push_ServiceDesc is the grpc.ServiceDesc for Push service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -100,6 +168,14 @@ var Push_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendEmail",
 			Handler:    _Push_SendEmail_Handler,
+		},
+		{
+			MethodName: "SendLarkText",
+			Handler:    _Push_SendLarkText_Handler,
+		},
+		{
+			MethodName: "SendLarkPlatformGroup",
+			Handler:    _Push_SendLarkPlatformGroup_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
