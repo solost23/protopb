@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/any.proto";
+
 package go_interface.push;
 option go_package = "github.com/solost23/protopb/gen/go/protos/push";
 
@@ -9,9 +11,9 @@ service Push {
   // 向用户发送邮件消息
   rpc SendEmail(SendEmailRequest) returns(SendEmailResponse);
   // 发送飞书消息(text)
-  rpc SendLarkText(SendLarkTextRequest) returns(SendLarkTextResponse);
+  rpc SendLarkTextByUnionIds(SendLarkTextByUnionIdsRequest) returns(SendLarkTextByUnionIdsResponse);
   // 发送飞书消息(富文本)
-  rpc SendLarkPlatformGroup(SendLarkPlatformGroupRequest) returns(SendLarkPlatformGroupResponse);
+  rpc SendLarkPostByUnionIds(SendLarkPostByUnionIdsRequest) returns(SendLarkPostByUnionIdsResponse);
 }
 
 message Email {
@@ -42,21 +44,22 @@ message SendEmailResponse {
   common.errorInfo errorInfo = 1;
 }
 
-message SendLarkTextRequest {
+message SendLarkTextByUnionIdsRequest {
   common.requestHeader header = 1;
-  repeated string openIds = 2;
-  string msg = 3;
+  repeated string unionIds = 2;
+  string content = 3;
 }
 
-message SendLarkTextResponse {
+message SendLarkTextByUnionIdsResponse {
   common.errorInfo errorInfo = 1;
 }
 
-message SendLarkPlatformGroupRequest {
+message SendLarkPostByUnionIdsRequest {
   common.requestHeader header = 1;
-  string msg = 2;
+  repeated string unionIds = 2;
+  google.protobuf.Any content = 3;
 }
 
-message SendLarkPlatformGroupResponse {
+message SendLarkPostByUnionIdsResponse {
   common.errorInfo errorInfo = 1;
 }
