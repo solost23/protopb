@@ -17,17 +17,6 @@ service Push {
 }
 
 message Email {
-  // 发送人主机
-  string host = 1;
-  // 发送人主机端口
-  string port = 2;
-  // 发送人密码
-  string password = 3;
-  // 发送人名字
-  string sendPersonName = 4;
-  // 发送人邮箱地址
-  string sendPersonAddr = 5;
-
   string topic = 6;
   string name = 7;
   string addr = 8;
