@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package go_interface.common;
-option go_package = "github.com/solost23/go_interface/gen_go/common";
+option go_package = "github.com/solost23/protopb/gen/go/protos/common";
 
 message requestHeader {
   // 请求者, client 可设置为模块名

@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package go_interface.push;
-option go_package = "github.com/solost23/go_interface/gen_go/push";
+option go_package = "github.com/solost23/protopb/gen/go/protos/push";
 
 import "protos/common/common.proto";
 
