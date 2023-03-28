@@ -26,6 +26,11 @@ message matchQuery {
   string value = 2;
 }
 
+message multiMatchQuery {
+  string field = 1;
+  string value = 2;
+}
+
 message rangeQuery {
   string field = 1;
   string gt = 2;
@@ -37,10 +42,12 @@ message rangeQuery {
 message query {
   // 精确查找
   repeated termQuery termQueries = 1;
-  // 全文索引
+  // 单字段全文模糊匹配
   repeated matchQuery matchQueries = 2;
+  // 多字段全文模糊匹配
+  repeated multiMatchQuery multiMatchQueries = 3;
   // 范围查询
-  repeated rangeQuery rangeQueries = 3;
+  repeated rangeQuery rangeQueries = 4;
 }
 
 message sort {
