@@ -27,7 +27,7 @@ message matchQuery {
 }
 
 message multiMatchQuery {
-  string field = 1;
+  repeated string field = 1;
   string value = 2;
 }
 
