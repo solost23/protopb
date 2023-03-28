@@ -10,10 +10,14 @@ import "protos/common/common.proto";
 service Search {
   // 搜索
   rpc Search(SearchRequest) returns(SearchResponse);
+  // 文档创建(自动创建index)
+  rpc Create(CreateRequest) returns(CreateResponse);
+  // 删除
+  rpc Delete(DeleteRequest) returns(DeleteResponse);
 }
 
 message termQuery {
-  string filed = 1;
+  string field = 1;
   string value = 2;
 }
 
@@ -32,11 +36,11 @@ message rangeQuery {
 
 message query {
   // 精确查找
-  repeated termQuery termQuery = 1;
+  repeated termQuery termQueries = 1;
   // 全文索引
-  repeated matchQuery matchQuery = 2;
+  repeated matchQuery matchQueries = 2;
   // 范围查询
-  repeated rangeQuery rangeQuery = 3;
+  repeated rangeQuery rangeQueries = 3;
 }
 
 message sort {
@@ -77,4 +81,25 @@ message SearchResponse {
   common.errorInfo errorInfo = 1;
   pageList pageList = 2;
   repeated string records = 3;
+}
+
+message CreateRequest {
+  common.requestHeader header = 1;
+  string documentId = 2;
+  string index = 3;
+  string document = 4;
+}
+
+message CreateResponse {
+  common.errorInfo errorInfo = 1;
+}
+
+message DeleteRequest {
+  common.requestHeader header = 1;
+  string index = 2;
+  string documentId = 3;
+}
+
+message DeleteResponse {
+  common.errorInfo errorInfo = 1;
 }
