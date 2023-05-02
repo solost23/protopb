@@ -1,10 +1,14 @@
-from setuptools import setup
+import setuptools
 
-setup(name='py3',
-      version='v0.0.1', 
-      description='py3', 
-      url='https://github.com/solost23/protopb/gen/py3', 
-      author='solost23',
-      author_email='tianyuanyuans@163.com', 
-      packages=['py3'], 
-      )
+with open('README.md', 'r') as f:
+    description = f.read()
+
+setuptools.setup(
+    name='protopb', 
+    version='v0.0.1', 
+    author='solost23', 
+    author_email='tianyuanyuans@163.com', 
+    description=description, 
+    url='https://github.com/solost23/protopb/tree/master/gen/py3', 
+    packages=setuptools.find_package(),
+)
