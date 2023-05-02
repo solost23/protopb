@@ -10,5 +10,4 @@ setuptools.setup(
     author_email='tianyuanyuans@163.com', 
     description=description, 
     url='https://github.com/solost23/protopb/tree/master/gen/py3', 
-    packages=setuptools.find_package(),
 )
