@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package go_interface.face_recognition;
+option go_package = "github.com/solost23/protopb/gen/go/protos/face_recognition";
+
+import "protos/common/common.proto";
+
+service faceRecognition {
+  // 批量生成人像编码
+  rpc GenerateFaceEncoding(GenerateFaceEncodingRequest) returns(GenerateFaceEncodingResponse);
+  // 对比人像库，返回符合条件人列表的第一个符合人UserID & true, 若没有符合人，那么直接返回false
+  rpc CompareFaces(CompareFacesRequest) returns(CompareFacesResponse);
+}
+
+message GenerateFaceEncodingRequest {
+  common.requestHeader header = 1;
+  // 文件流列表
+  repeated bytes data = 2;
+  // 文件类型
+  string uploadType = 3;
+}
+
+message GenerateFaceEncodingResponse {
+  common.errorInfo errorInfo = 1;
+  repeated string faceEncodings = 2;
+}
+
+message CompareFacesRequest {
+  common.requestHeader header = 1;
+  // 文件流
+  bytes data = 2;
+  // 文件类型
+  string uploadType = 3;
+}
+
+message CompareFacesResponse {
+  common.errorInfo errorInfo = 1;
+  // 第一个对比上的用户的userId
+  int32 userId = 2;
+  // 是否找到
+  bool isFound = 3;
+}
