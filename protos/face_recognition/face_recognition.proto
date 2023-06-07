@@ -16,8 +16,6 @@ message GenerateFaceEncodingRequest {
   common.requestHeader header = 1;
   // 文件流列表
   repeated bytes data = 2;
-  // 文件类型
-  string uploadType = 3;
 }
 
 message GenerateFaceEncodingResponse {
@@ -29,14 +27,12 @@ message CompareFacesRequest {
   common.requestHeader header = 1;
   // 文件流
   bytes data = 2;
-  // 文件类型
-  string uploadType = 3;
 }
 
 message CompareFacesResponse {
   common.errorInfo errorInfo = 1;
   // 第一个对比上的用户的userId
-  int32 userId = 2;
+  string userId = 2;
   // 是否找到
   bool isFound = 3;
 }
