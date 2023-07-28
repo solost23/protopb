@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package common;
+option go_package = "github.com/solost23/protopb/gen/go/common";
+
+message RequestHeader {
+  string Requester = 1;  // 请求者, client 可设置为模块名
+  sint32 operatorId = 2;  // 操作者 ID, 没有可置空
+  sint64 traceId = 3;  // trackId
+}
+
+message ErrorInfo {
+  string requester = 1;  // 请求者, client 可设置为模块名
+  sint32 operatorId = 2;  // 操作者 ID, 没有可置空
+  sint64 traceId = 3;  // trackId
+  sint32 code = 4;  // 错误代码
+  string msg = 5;  // 错误信息
+}

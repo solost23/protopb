@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package es;
+option go_package = "github.com/solost23/protopb/gen/go/es";
+
+import "common/common.proto";
+
+service SearchService {
+  rpc Search(SearchRequest) returns(SearchResponse);  // 搜索
+  rpc Create(CreateRequest) returns(CreateResponse);  // 文档创建(自动创建index)
+  rpc Delete(DeleteRequest) returns(DeleteResponse);  // 删除
+}
+
+message TermQuery {
+  string field = 1;
+  string value = 2;
+}
+
+message MatchQuery {
+  string field = 1;
+  string value = 2;
+}
+
+message MultiMatchQuery {
+  repeated string field = 1;
+  string value = 2;
+}
+
+message RangeQuery {
+  string field = 1;
+  string gt = 2;
+  string lt = 3;
+  string gte = 4;
+  string lte = 5;
+}
+
+message Query {
+  repeated TermQuery termQueries = 1;  // 精确查找
+  repeated MatchQuery matchQueries = 2;  // 单字段全文模糊匹配
+  repeated MultiMatchQuery multiMatchQueries = 3;  // 多字段全文模糊匹配
+  repeated RangeQuery rangeQueries = 4;  // 范围查询
+}
+
+message Sort {
+  string field = 1;
+  bool ascending = 2;  // true: 升序
+}
+
+message SearchRequest {
+  common.RequestHeader header = 1;
+  Query mustQuery = 2;  // 搜索条件 必须全匹配
+  Query mustNotQuery = 3;  // 必须全不匹配
+  Query shouldQuery = 4;  // 有一个条件匹配则匹配
+  repeated string indices = 5;  // 索引名称列表
+  repeated Sort sort = 6;  // 排序列表
+  sint32 page = 7;  // 当前页
+  sint32 size = 8;  // 页长
+  bool pretty = 9;  // 是否返回json格式
+}
+
+message PageList {
+  int32 size = 1;
+  int64 pages = 2;
+  int64 total = 3;
+  int32 current = 4;
+}
+
+message SearchResponse {
+  common.ErrorInfo errorInfo = 1;
+  PageList pageList = 2;
+  repeated string records = 3;
+}
+
+message CreateRequest {
+  common.RequestHeader header = 1;
+  string documentId = 2;
+  string index = 3;
+  string document = 4;
+}
+
+message CreateResponse {
+  common.ErrorInfo errorInfo = 1;
+}
+
+message DeleteRequest {
+  common.RequestHeader header = 1;
+  string index = 2;
+  string documentId = 3;
+}
+
+message DeleteResponse {
+  common.ErrorInfo errorInfo = 1;
+}

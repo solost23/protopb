@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package oss;
+option go_package = "github.com/solost23/protopb/gen/go/oss";
+
+import "common/common.proto";
+
+service OSSService {
+  // 向minio上传文件
+  rpc Upload(UploadRequest) returns(UploadResponse);
+}
+
+message UploadRequest {
+  common.RequestHeader header = 1;
+  string folder = 2;  // 文件夹
+  string key = 3;  // 文件名(加密)
+  bytes data = 4;  // 文件数据流
+  string uploadType = 5;  // 文件类型
+}
+
+message UploadResponse {
+  common.ErrorInfo errorInfo = 1;
+  string url = 2;  // 文件下载url
+  string key = 3;  // 文件名(加密)
+}

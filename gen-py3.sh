@@ -3,5 +3,5 @@ if [ ! -d "./gen/py3" ]; then
 fi
 
 # --proto_path=. 可替换成-I.
-python3 -m grpc_tools.protoc --proto_path=. --python_out=./gen/py3 --grpc_python_out=./gen/py3 ./protos/*/*.proto
+python3 -m grpc_tools.protoc --proto_path=. --python_out=./gen/py3 --grpc_python_out=./gen/py3 ./*/*.proto
 echo "proto file create success ..."
