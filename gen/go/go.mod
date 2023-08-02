@@ -1,4 +1,4 @@
-module github.com/solost23/protopb/gen/go
+module github.com/solost23/protopb
 
 go 1.20
 

@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package order_machine;
-option go_package = "github.com/solost23/protopb/gen/go/order_machine";
+option go_package = "github.com/solost23/protopb/order_machine";
 
 import "common/common.proto";
 

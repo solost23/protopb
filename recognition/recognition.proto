@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package face_recognition;
-option go_package = "github.com/solost23/protopb/gen/go/face_recognition";
+package recognition;
+option go_package = "github.com/solost23/protopb/recognition";
 
 import "common/common.proto";
 

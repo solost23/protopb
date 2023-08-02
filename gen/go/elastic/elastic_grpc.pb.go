@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.21.12
-// source: es/es.proto
+// source: elastic/elastic.proto
 
-package es
+package elastic
 
 import (
 	context "context"
@@ -37,7 +37,7 @@ func NewSearchServiceClient(cc grpc.ClientConnInterface) SearchServiceClient {
 
 func (c *searchServiceClient) Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
 	out := new(SearchResponse)
-	err := c.cc.Invoke(ctx, "/es.SearchService/Search", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/elastic.SearchService/Search", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +46,7 @@ func (c *searchServiceClient) Search(ctx context.Context, in *SearchRequest, opt
 
 func (c *searchServiceClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
 	out := new(CreateResponse)
-	err := c.cc.Invoke(ctx, "/es.SearchService/Create", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/elastic.SearchService/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -55,7 +55,7 @@ func (c *searchServiceClient) Create(ctx context.Context, in *CreateRequest, opt
 
 func (c *searchServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	out := new(DeleteResponse)
-	err := c.cc.Invoke(ctx, "/es.SearchService/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/elastic.SearchService/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -108,7 +108,7 @@ func _SearchService_Search_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/es.SearchService/Search",
+		FullMethod: "/elastic.SearchService/Search",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SearchServiceServer).Search(ctx, req.(*SearchRequest))
@@ -126,7 +126,7 @@ func _SearchService_Create_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/es.SearchService/Create",
+		FullMethod: "/elastic.SearchService/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SearchServiceServer).Create(ctx, req.(*CreateRequest))
@@ -144,7 +144,7 @@ func _SearchService_Delete_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/es.SearchService/Delete",
+		FullMethod: "/elastic.SearchService/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SearchServiceServer).Delete(ctx, req.(*DeleteRequest))
@@ -156,7 +156,7 @@ func _SearchService_Delete_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SearchService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "es.SearchService",
+	ServiceName: "elastic.SearchService",
 	HandlerType: (*SearchServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -173,5 +173,5 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "es/es.proto",
+	Metadata: "elastic/elastic.proto",
 }
