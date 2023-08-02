@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.21.12
-// source: face_recognition/face_recognition.proto
+// source: recognition/recognition.proto
 
-package face_recognition
+package recognition
 
 import (
 	context "context"
@@ -38,7 +38,7 @@ func NewFaceRecognitionServiceClient(cc grpc.ClientConnInterface) FaceRecognitio
 
 func (c *faceRecognitionServiceClient) GenerateFaceEncoding(ctx context.Context, in *GenerateFaceEncodingRequest, opts ...grpc.CallOption) (*GenerateFaceEncodingResponse, error) {
 	out := new(GenerateFaceEncodingResponse)
-	err := c.cc.Invoke(ctx, "/face_recognition.FaceRecognitionService/GenerateFaceEncoding", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/recognition.FaceRecognitionService/GenerateFaceEncoding", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func (c *faceRecognitionServiceClient) GenerateFaceEncoding(ctx context.Context,
 
 func (c *faceRecognitionServiceClient) CompareFaces(ctx context.Context, in *CompareFacesRequest, opts ...grpc.CallOption) (*CompareFacesResponse, error) {
 	out := new(CompareFacesResponse)
-	err := c.cc.Invoke(ctx, "/face_recognition.FaceRecognitionService/CompareFaces", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/recognition.FaceRecognitionService/CompareFaces", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -99,7 +99,7 @@ func _FaceRecognitionService_GenerateFaceEncoding_Handler(srv interface{}, ctx c
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/face_recognition.FaceRecognitionService/GenerateFaceEncoding",
+		FullMethod: "/recognition.FaceRecognitionService/GenerateFaceEncoding",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FaceRecognitionServiceServer).GenerateFaceEncoding(ctx, req.(*GenerateFaceEncodingRequest))
@@ -117,7 +117,7 @@ func _FaceRecognitionService_CompareFaces_Handler(srv interface{}, ctx context.C
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/face_recognition.FaceRecognitionService/CompareFaces",
+		FullMethod: "/recognition.FaceRecognitionService/CompareFaces",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FaceRecognitionServiceServer).CompareFaces(ctx, req.(*CompareFacesRequest))
@@ -129,7 +129,7 @@ func _FaceRecognitionService_CompareFaces_Handler(srv interface{}, ctx context.C
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var FaceRecognitionService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "face_recognition.FaceRecognitionService",
+	ServiceName: "recognition.FaceRecognitionService",
 	HandlerType: (*FaceRecognitionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -142,5 +142,5 @@ var FaceRecognitionService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "face_recognition/face_recognition.proto",
+	Metadata: "recognition/recognition.proto",
 }
