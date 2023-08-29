@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package elastic;
+
 option go_package = "github.com/solost23/protopb/gen/go/elastic";
 
 import "common/common.proto";
@@ -59,10 +60,10 @@ message SearchRequest {
 }
 
 message PageList {
-  int32 size = 1;
-  int64 pages = 2;
-  int64 total = 3;
-  int32 current = 4;
+  sint32 size = 1;
+  sint64 pages = 2;
+  sint64 total = 3;
+  sint32 current = 4;
 }
 
 message SearchResponse {

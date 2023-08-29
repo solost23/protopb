@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package recognition;
+
 option go_package = "github.com/solost23/protopb/gen/go/recognition";
 
 import "common/common.proto";
